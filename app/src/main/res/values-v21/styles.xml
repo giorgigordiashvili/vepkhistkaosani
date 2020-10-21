@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.NoWiredStrapInNavigationBar" parent="@style/Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">#121212</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+    </style>
+
+
+
+</resources>

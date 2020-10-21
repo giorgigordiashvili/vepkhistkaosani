@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/anbani" android:title="ანბანი"
+        app:showAsAction="never"
+        />
+    <item android:id="@+id/tavi" android:title="თავი"
+        app:showAsAction="never"
+        />
+    <item android:id="@+id/tema" android:title="თემა"
+        app:showAsAction="never"
+        />
+    <item android:id="@+id/search" android:title="ძიება" android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+
+</menu>

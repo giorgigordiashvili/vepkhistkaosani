@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+
+
+            android:id="@+id/nav_eseebi"
+            android:icon="@drawable/ic_eseebi2"
+            android:title="ესეები" />
+        <item
+            android:id="@+id/nav_sanishni"
+            android:icon="@drawable/ic_sanishni"
+            android:title="სანიშნი" />
+        <item
+            android:id="@+id/nav_shinaarsi"
+            android:icon="@drawable/ic_shinaarsi"
+            android:title="შინაარსი" />
+        <item
+            android:id="@+id/nav_lexikoni"
+            android:icon="@drawable/ic_lexikoni"
+            android:title="ლექსიკონი" />
+    </group>
+
+</menu>

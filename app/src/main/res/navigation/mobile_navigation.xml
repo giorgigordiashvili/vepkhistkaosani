@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_vefx">
+    <fragment
+        android:id="@+id/nav_vefx"
+        android:name="com.example.vefkhistkaosani.VefxFragment"
+        android:label="ვეფხისტყაოსანი"
+        tools:layout="@layout/fragment_vefx" />
+    <fragment
+        android:id="@+id/nav_apor"
+        android:name="com.example.vefkhistkaosani.AporizmebiFragment"
+        android:label="აფორიზმები"
+        tools:layout="@layout/fragment_aporizmebi" />
+    <fragment
+        android:id="@+id/nav_sarc"
+        android:name="com.example.vefkhistkaosani.SarcheviFragment"
+        android:label="სარჩევი"
+        tools:layout="@layout/fragment_sarchevi" />
+    <fragment
+        android:id="@+id/nav_eseebi"
+        android:name="com.example.vefkhistkaosani.EseebiFragment"
+        android:label="ესეები"
+        tools:layout="@layout/fragment_eseebi" />
+
+    <fragment
+        android:id="@+id/nav_sanishni"
+        android:name="com.example.vefkhistkaosani.SanishniFragment"
+        android:label="სანიშნი"
+        tools:layout="@layout/fragment_sanishni" />
+
+    <fragment
+        android:id="@+id/nav_shinaarsi"
+        android:name="com.example.vefkhistkaosani.ShinaarsiFragment"
+        android:label="შინაარსი"
+        tools:layout="@layout/fragment_shinaarsi" />
+    <fragment
+        android:id="@+id/nav_lexikoni"
+        android:name="com.example.vefkhistkaosani.LexikoniFragment"
+        android:label="ლექსიკონი"
+        tools:layout="@layout/fragment_lexikoni" />
+
+
+
+</navigation>
