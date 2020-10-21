@@ -1,12 +1,11 @@
 package com.example.vefkhistkaosani
 
-import android.app.ProgressDialog
-import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
-
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
@@ -29,10 +28,9 @@ class VefxFragment : Fragment() {
         val v: View = inflater.inflate(R.layout.fragment_vefx, container, false)
 
 
-
+        val id = Login.logged;
         mWebView = v.findViewById<View>(R.id.view_main_vefx) as WebView
-        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/")
-
+        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?userid=$id")
 
         // Enable Javascript
         val webSettings = mWebView!!.settings
@@ -45,6 +43,13 @@ class VefxFragment : Fragment() {
 
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    fun scrollToThat(id: String){
+
+
+    }
+
     override fun onResume() {
         super.onResume()
 
@@ -52,8 +57,28 @@ class VefxFragment : Fragment() {
         (activity as Dashboard?)
                 ?.setActionBarTitle("        ვეფხისტყაოსანი")
     }
-    var progressDialog: ProgressDialog? = null
 
+    private fun callJavaScript(view: WebView, methodName: String, vararg params: Any) {
+        val stringBuilder = StringBuilder()
+        stringBuilder.append("javascript:try{")
+        stringBuilder.append(methodName)
+        stringBuilder.append("(")
+        var separator = ""
+        for (param in params) {
+            stringBuilder.append(separator)
+            separator = ","
+            if (param is String) {
+                stringBuilder.append("'")
+            }
+            stringBuilder.append(param.toString().replace("'", "\\'"))
+            if (param is String) {
+                stringBuilder.append("'")
+            }
+        }
+        stringBuilder.append(")}catch(error){console.error(error.message);}")
+        val call = stringBuilder.toString()
+        view.loadUrl(call)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
@@ -67,7 +92,8 @@ class VefxFragment : Fragment() {
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                mWebView?.loadUrl("http://vefxistyaosani.ge/android/")
+                val id = Login.logged;
+                mWebView?.loadUrl("http://vefxistyaosani.ge/android/?userid=$id")
                 return true
             }
         })
@@ -84,7 +110,8 @@ class VefxFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     if (newText.length > 1) {
-                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?q=$newText")
+                        val id = Login.logged;
+                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?q=$newText?userid=$id")
                     }
                 };
                 return true
@@ -95,6 +122,7 @@ class VefxFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
 
     }
+
 
 
 

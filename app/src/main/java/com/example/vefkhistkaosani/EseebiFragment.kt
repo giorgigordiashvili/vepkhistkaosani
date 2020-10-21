@@ -34,7 +34,8 @@ class EseebiFragment : Fragment() {
 
         val v: View = inflater.inflate(R.layout.fragment_eseebi, container, false)
         mWebView = v.findViewById<View>(R.id.view_main_eseebi) as WebView
-        mWebView!!.loadUrl("https://vefxistyaosani.ge/iOS/?page=eseebi")
+        val id = Login.logged;
+        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=eseebi&userid=$id")
 
         // Enable Javascript
         val webSettings = mWebView!!.settings

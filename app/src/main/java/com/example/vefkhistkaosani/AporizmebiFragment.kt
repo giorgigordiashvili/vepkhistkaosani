@@ -24,7 +24,8 @@ class AporizmebiFragment : Fragment() {
         setHasOptionsMenu(true)
         val v: View = inflater.inflate(R.layout.fragment_aporizmebi, container, false)
         mWebView = v.findViewById<View>(R.id.view_main_apor) as WebView
-        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi")
+        val id = Login.logged;
+        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi&userid=$id")
 
         // Enable Javascript
         val webSettings = mWebView!!.settings
@@ -64,7 +65,8 @@ class AporizmebiFragment : Fragment() {
                 val url = mWebView?.url
                 val sanitizer = UrlQuerySanitizer(url)
                 val inAp = sanitizer.getValue("in")
-                mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi&in=$inAp")
+                val id = Login.logged;
+                mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi&in=$inAp&userid=$id")
                 return true
             }
         })
@@ -89,7 +91,8 @@ class AporizmebiFragment : Fragment() {
 
                 if (newText != null) {
                     if (newText.length > 0) {
-                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi&in=$inAp&q=$newText")
+                        val id = Login.logged;
+                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi&in=$inAp&q=$newText&userid=$id")
                     }
                 };
                 return true
@@ -105,12 +108,12 @@ class AporizmebiFragment : Fragment() {
 
 
 
-
+        val id = Login.logged;
         when (item.itemId) {
 
-            R.id.anbani -> mWebView?.loadUrl("https://vefxistyaosani.ge/android/?page=aporizmebi&in=anbani")
-            R.id.tavi -> mWebView?.loadUrl("https://vefxistyaosani.ge/android/?page=aporizmebi&in=tavi")
-            R.id.tema -> mWebView?.loadUrl("https://vefxistyaosani.ge/android/?page=aporizmebi&in=tema")
+            R.id.anbani -> mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi&in=anbani&userid=$id")
+            R.id.tavi -> mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi&in=tavi&userid=$id")
+            R.id.tema -> mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=aporizmebi&in=tema&userid=$id")
 
         }
 

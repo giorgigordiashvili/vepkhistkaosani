@@ -1,34 +1,19 @@
 package com.example.vefkhistkaosani;
 
 
-import android.app.FragmentTransaction;
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -131,7 +116,25 @@ public class Dashboard extends AppCompatActivity {
     }
     public void changeView(String text){
 
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+        VefxFragment fragment = new VefxFragment();
+
+        ((VefxFragment) fragment).scrollToThat(text);
+
+
 
     }
+    public void logOut(){
+        SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
+        // Set username & email
+        sp.edit().putString("USERID",null).apply();
+        sp.edit().putString("fullname",null).apply();
+        sp.edit().putString("package",null).apply();
+        finish();
+    }
+
+
 
 }

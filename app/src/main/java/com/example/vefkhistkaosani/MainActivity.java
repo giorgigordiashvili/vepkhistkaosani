@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         //Animations
         Login.logged = sp.getString("USERID", null);
 
+
         //sp.edit().putString("USERID",null).apply();
 
         //HOOKS

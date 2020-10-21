@@ -37,7 +37,8 @@ class SarcheviFragment : Fragment() {
         val v: View = inflater.inflate(R.layout.fragment_sarchevi, container, false)
 
       mWebView = v.findViewById<View>(R.id.view_main_sarc) as WebView
-        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi")
+        val id = Login.logged;
+        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&userid=$id")
         mWebView?.addJavascriptInterface(JavascriptInterface(), "javascript_bridge")
 
         // Enable Javascript
@@ -71,7 +72,8 @@ class SarcheviFragment : Fragment() {
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi")
+                val id = Login.logged;
+                mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&userid=$id")
                 return true
             }
         })
@@ -88,7 +90,8 @@ class SarcheviFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     if (newText.length > 0) {
-                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&q=$newText")
+                        val id = Login.logged;
+                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&q=$newText&userid=$id")
                     }
                 };
                 return true

@@ -2,14 +2,15 @@ package com.example.vefkhistkaosani
 
 
 import android.app.Dialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.fragment.app.Fragment
+import androidx.activity.OnBackPressedCallback
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -17,6 +18,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class SettingsFragment : BottomSheetDialogFragment() {
 
+    private inner class JavascriptInterface
+    {
+        @android.webkit.JavascriptInterface
+        fun logOut()
+        {
+            (activity as Dashboard?)
+                    ?.logOut()
+
+        }
+    }
     var mWebView: WebView? = null
 
 
@@ -25,10 +36,23 @@ class SettingsFragment : BottomSheetDialogFragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
+        //BACK PRESS HANDLING IN WEBVIEW
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (mWebView?.canGoBack()!!){
+                    mWebView?.goBack();
+                }else {
+                    activity!!.finish()
+                }
+            }
+        })
         val v: View = inflater.inflate(R.layout.fragment_settings, container, false)
         mWebView = v.findViewById<View>(R.id.view_main_settings) as WebView
-        mWebView!!.loadUrl("https://vefxistyaosani.ge/iOS/?page=settings")
+        val sp = activity?.getSharedPreferences("login", Context.MODE_PRIVATE)
+
+        val id = Login.logged;
+        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=settings&userid=$id")
+
 
         // Enable Javascript
         val webSettings = mWebView!!.settings
