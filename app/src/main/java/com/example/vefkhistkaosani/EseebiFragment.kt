@@ -1,6 +1,10 @@
 package com.example.vefkhistkaosani
 
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
@@ -19,7 +23,25 @@ class EseebiFragment : Fragment() {
 
     var mWebView: WebView? = null
 
+    private inner class JavascriptInterface
+    {
+        @android.webkit.JavascriptInterface
+        fun shareText(text: String){
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(Intent.EXTRA_TEXT, text)
+            sendIntent.type = "text/plain"
+            startActivity(sendIntent)
+        }
+        @android.webkit.JavascriptInterface
+        fun copyText(text:String){
 
+
+            val clipboard: ClipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText(null, text)
+            clipboard.setPrimaryClip(clip)
+        }
+    }
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

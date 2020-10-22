@@ -27,6 +27,7 @@ class SarcheviFragment : Fragment() {
     }
     private inner class JavascriptInterface
     {
+
         @android.webkit.JavascriptInterface
         fun showToast(text: String?)
         {
@@ -55,13 +56,14 @@ class SarcheviFragment : Fragment() {
             mWebView = v?.findViewById<View>(R.id.view_main_sarc) as WebView
             val id = Login.logged;
             mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&userid=$id")
-            mWebView?.addJavascriptInterface(JavascriptInterface(), "javascript_bridge")
+
 
             // Enable Javascript
             val webSettings = mWebView!!.settings
 
 
             webSettings.javaScriptEnabled = true
+            mWebView?.addJavascriptInterface(JavascriptInterface(), "javascript_bridge")
 
             // Force links and redirects to open in the WebView instead of in a browser
             mWebView!!.webViewClient = WebViewClient()

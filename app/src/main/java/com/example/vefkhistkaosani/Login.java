@@ -50,6 +50,9 @@ public class Login extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
+        EditText editText = findViewById(R.id.phone_number);
+        editText.requestFocus();
+
         Button mButton = (Button) findViewById(R.id.button1);
         EditText mEdit = (EditText) findViewById(R.id.phone_number);
 //START
@@ -120,23 +123,23 @@ public class Login extends AppCompatActivity {
         //image.setAnimation(splash_animation);
         // Hook up the VideoView to our UI.
 
-      //  videoBG = (VideoView) findViewById(R.id.videoView);
+        videoBG = (VideoView) findViewById(R.id.videoView);
 
         // Build your video Uri
-      /*  Uri uri = Uri.parse("android.resource://" // First start with this,
+        Uri uri = Uri.parse("android.resource://" // First start with this,
                 + getPackageName() // then retrieve your package name,
                 + "/" // add a slash,
-                + R.raw.back); // and then finally add your video resource. Make sure it is stored*/
+                + R.raw.back); // and then finally add your video resource. Make sure it is stored
         // in the raw folder.
 
         // Set the new Uri to our VideoView
-        //videoBG.setVideoURI(uri);
+        videoBG.setVideoURI(uri);
         // Start the VideoView
-        //videoBG.start();
+        videoBG.start();
 
         // Set an OnPreparedListener for our VideoView. For more information about VideoViews,
         // check out the Android Docs: https://developer.android.com/reference/android/widget/VideoView.html
-     /*   videoBG.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        videoBG.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mMediaPlayer = mediaPlayer;
@@ -148,9 +151,9 @@ public class Login extends AppCompatActivity {
                     mMediaPlayer.start();
                 }
             }
-        });*/
+        });
     }
-   /* @Override
+    @Override
     protected void onPause() {
         super.onPause();
         // Capture the current video position and pause the video.
@@ -171,5 +174,5 @@ public class Login extends AppCompatActivity {
         // When the Activity is destroyed, release our MediaPlayer and set it to null.
         mMediaPlayer.release();
         mMediaPlayer = null;
-    }*/
+    }
 }

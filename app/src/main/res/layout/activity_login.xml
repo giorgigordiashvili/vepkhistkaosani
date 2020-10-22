@@ -4,8 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
-    android:padding="16dp">
+    android:background="#000">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button1"
@@ -14,9 +23,9 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/firago_regular"
         android:paddingLeft="60dp"
-        android:paddingTop="0dp"
+        android:paddingTop="3dp"
         android:paddingRight="64dp"
-        android:paddingBottom="0dp"
+        android:paddingBottom="3dp"
         android:text="შემდეგ"
         android:textColor="#000000"
         android:textSize="17sp"
@@ -36,7 +45,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <TextView
@@ -60,12 +68,13 @@
         android:hint="567 117 216"
         android:inputType="textPersonName"
         android:paddingLeft="16dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#999999"
+        android:textColor="#000000"
+        android:textColorHint="#75000000"
         android:textCursorDrawable="@drawable/cursor_vefx"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

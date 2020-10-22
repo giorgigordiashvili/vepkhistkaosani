@@ -5,37 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000"
-    android:padding="16dp">
+    android:padding="0dp">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_resend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:padding="0dp"
         android:text="თავიდან გაგზავნა"
         android:textColor="#999999"
         android:textSize="12sp"
         app:backgroundTint="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_pin_entry" />
+        app:layout_constraintTop_toBottomOf="@+id/pinview" />
 
     <Button
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:padding="0dp"
         android:text="ნომრის შეცვლა"
         android:textColor="#999999"
         android:textSize="12sp"
         app:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_pin_entry" />
+        app:layout_constraintTop_toBottomOf="@+id/pinview" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -48,33 +56,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.alimuzaffar.lib.pin.PinEntryEditText
-        android:id="@+id/txt_pin_entry"
+    <com.goodiebag.pinview.Pinview
+        android:id="@+id/pinview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
         android:layout_marginTop="27dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
-        android:cursorVisible="false"
-        android:digits="1234567890"
-        android:inputType="number"
-        android:layoutDirection="ltr"
-        android:maxLength="6"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="35sp"
+        app:cursorVisible="false"
+        app:forceKeyboard="true"
+        app:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:pinAnimationType="none"
-        app:pinBackgroundDrawable="@drawable/ic_code"
-        app:pinBackgroundIsSquare="false"
-        app:pinLineColors="@color/colorPrimary"
-        app:pinLineStroke="1dp"
-        app:pinLineStrokeSelected="1dp"
-        tools:ignore="MissingConstraints" />
+        app:password="false"
+        app:pinBackground="@drawable/bg_rounded"
+        app:pinHeight="51dp"
+        app:pinLength="6"
+        app:pinWidth="43dp"
+        app:splitWidth="14dp"
+        app:textSize="15sp" />
+
 
     <TextView
         android:id="@+id/textView3"

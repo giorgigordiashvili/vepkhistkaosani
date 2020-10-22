@@ -1,20 +1,20 @@
 package com.example.vefkhistkaosani
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_dashboard.*
 
 
 @Suppress("DEPRECATION")
@@ -24,7 +24,26 @@ class VefxFragment : Fragment() {
     var mWebView: WebView? = null
 
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    private inner class JavascriptInterface
+    {
+        @android.webkit.JavascriptInterface
+        fun copyText(text: String){
+
+
+            val clipboard: ClipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText(null, text)
+            clipboard.setPrimaryClip(clip)
+        }
+        @android.webkit.JavascriptInterface
+        fun shareText(text: String){
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(Intent.EXTRA_TEXT, text)
+            sendIntent.type = "text/plain"
+            startActivity(sendIntent)
+        }
+    }
+
     override fun onCreateView(
 
             inflater: LayoutInflater,
@@ -47,6 +66,8 @@ class VefxFragment : Fragment() {
         // Enable Javascript
         val webSettings = mWebView!!.settings
         webSettings.javaScriptEnabled = true
+        mWebView?.addJavascriptInterface(JavascriptInterface(), "javascript_bridge")
+
 
 
         mWebView!!.webViewClient = object: WebViewClient(){
@@ -62,7 +83,7 @@ class VefxFragment : Fragment() {
                 if (highScore != null){
                     mWebView!!.evaluateJavascript("scrollToThat('$highScore');", null);
                     val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
-                    with (sharedPref.edit()) {
+                    with(sharedPref.edit()) {
                         putString("SCROLLTO", null)
                         apply()
                     }
@@ -94,27 +115,7 @@ class VefxFragment : Fragment() {
                 ?.setActionBarTitle("ვეფხისტყაოსანი")
     }
 
-    private fun callJavaScript(view: WebView, methodName: String, vararg params: Any) {
-        val stringBuilder = StringBuilder()
-        stringBuilder.append("javascript:try{")
-        stringBuilder.append(methodName)
-        stringBuilder.append("(")
-        var separator = ""
-        for (param in params) {
-            stringBuilder.append(separator)
-            separator = ","
-            if (param is String) {
-                stringBuilder.append("'")
-            }
-            stringBuilder.append(param.toString().replace("'", "\\'"))
-            if (param is String) {
-                stringBuilder.append("'")
-            }
-        }
-        stringBuilder.append(")}catch(error){console.error(error.message);}")
-        val call = stringBuilder.toString()
-        view.loadUrl(call)
-    }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)

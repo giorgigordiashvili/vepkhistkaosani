@@ -44,7 +44,8 @@
             android:layout_height="wrap_content"
             android:background="@color/black"
             app:elevation="8dp"
-
+            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
             app:itemIconSize="24dp"
             app:itemIconTint="@color/btm_nav"
             app:itemTextColor="@color/btm_nav"

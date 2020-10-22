@@ -44,7 +44,7 @@
 
 
             app:itemTextColor="#FFFFFF"
-
+            android:drawableLeft="@drawable/ic_config"
             android:text="კონფიგურაცია"
              />
     </LinearLayout></com.google.android.material.navigation.NavigationView>

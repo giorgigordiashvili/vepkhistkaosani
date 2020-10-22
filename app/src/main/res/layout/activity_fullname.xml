@@ -4,8 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
-    android:padding="16dp">
+    android:background="#000">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_submit_fullname"
@@ -14,9 +23,9 @@
         android:layout_marginTop="26dp"
         android:fontFamily="@font/firago_regular"
         android:paddingLeft="60dp"
-        android:paddingTop="0dp"
+        android:paddingTop="3dp"
         android:paddingRight="64dp"
-        android:paddingBottom="0dp"
+        android:paddingBottom="3dp"
         android:text="შემდეგ"
         android:textColor="#000000"
         android:textSize="17sp"
@@ -40,23 +49,21 @@
 
     <EditText
         android:id="@+id/full_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:width="267dp"
+        android:layout_width="267dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_rounded"
-        android:ems="10"
         android:hint="სახელი გვარი"
         android:inputType="textPersonName"
-        android:padding="16dp"
+        android:paddingLeft="16dp"
         android:textColor="#FFFFFF"
-        android:textColorHint="#999999"
+        android:textColorHint="#75000000"
         android:textCursorDrawable="@drawable/cursor_vefx"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
 
     <TextView
         android:id="@+id/textView4"
