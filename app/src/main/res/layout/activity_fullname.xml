@@ -51,6 +51,7 @@
         android:padding="16dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#999999"
+        android:textCursorDrawable="@drawable/cursor_vefx"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.465"

@@ -2,14 +2,14 @@ package com.example.vefkhistkaosani
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ShinaarsiFragment : Fragment() {
 
@@ -21,6 +21,7 @@ class ShinaarsiFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         //BACK PRESS HANDLING IN WEBVIEW
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -33,7 +34,8 @@ class ShinaarsiFragment : Fragment() {
         })
         val v: View = inflater.inflate(R.layout.fragment_shinaarsi, container, false)
         mWebView = v.findViewById<View>(R.id.view_main_shinaarsi) as WebView
-        mWebView!!.loadUrl("https://vefxistyaosani.ge/iOS/?page=shinaarsi")
+        val id = Login.logged;
+        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=shinaarsi&userid=$id")
 
         // Enable Javascript
         val webSettings = mWebView!!.settings
@@ -52,6 +54,50 @@ class ShinaarsiFragment : Fragment() {
         // Set title bar
         (activity as Dashboard?)
                 ?.setActionBarTitle("შინაარსი")
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_menu, menu)
+        val searchItem = menu?.findItem(R.id.search)
+        val searchView = searchItem?.actionView as SearchView
+        val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
+        MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+
+                navBar.visibility = View.GONE
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                navBar.visibility = View.VISIBLE
+                val id = Login.logged;
+                mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=shinaarsi&userid=$id")
+                return true
+            }
+        })
+
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus();
+
+                return true
+            }
+
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    if (newText.length > 0) {
+                        val id = Login.logged;
+                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=shinaarsi&q=$newText&userid=$id")
+                    }
+                };
+                return true
+            }
+
+        })
+
+        super.onCreateOptionsMenu(menu, inflater)
+
     }
 
 

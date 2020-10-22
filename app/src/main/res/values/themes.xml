@@ -6,12 +6,17 @@
         <item name="fontFamily">@font/firago_regular</item>
         <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
     </style>
+
     <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_sort</item>
+        <item name="android:src">@drawable/ic_sort2</item>
         <item name="android:background">?android:attr/actionBarItemBackground</item>
         <item name="android:contentDescription">"Lala"</item>
-    </style>
-    <style name="Theme.Vefkhistkaosani.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+</style>
+
+
+
+<style name="Theme.Vefkhistkaosani.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Vefkhistkaosani.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

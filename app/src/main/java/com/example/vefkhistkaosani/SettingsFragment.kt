@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
+import androidx.navigation.Navigation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -21,7 +22,7 @@ class SettingsFragment : BottomSheetDialogFragment() {
     private inner class JavascriptInterface
     {
         @android.webkit.JavascriptInterface
-        fun logOut()
+        fun loggg()
         {
             (activity as Dashboard?)
                     ?.logOut()
@@ -36,6 +37,7 @@ class SettingsFragment : BottomSheetDialogFragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+
         //BACK PRESS HANDLING IN WEBVIEW
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -52,7 +54,7 @@ class SettingsFragment : BottomSheetDialogFragment() {
 
         val id = Login.logged;
         mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=settings&userid=$id")
-
+        mWebView?.addJavascriptInterface(JavascriptInterface(), "javascript_bridge")
 
         // Enable Javascript
         val webSettings = mWebView!!.settings

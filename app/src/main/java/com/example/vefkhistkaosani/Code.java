@@ -98,7 +98,7 @@ public class Code extends AppCompatActivity {
                         sp.edit().putString("USERID",Login.user_id).apply();
                         sp.edit().putString("fullname",Login.full_name).apply();
                         sp.edit().putString("package","სტანდარტული").apply();
-
+                        Login.logged = Login.user_id;
 
                         startActivity(intent);
                         finish();

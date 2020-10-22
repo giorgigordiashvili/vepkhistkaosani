@@ -80,12 +80,14 @@ public class Dashboard extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
 
-
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(bottomNav,navController);
 
     }
 
+    public void rame(){
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -116,9 +118,7 @@ public class Dashboard extends AppCompatActivity {
     }
     public void changeView(String text){
 
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
+
         VefxFragment fragment = new VefxFragment();
 
         ((VefxFragment) fragment).scrollToThat(text);
@@ -126,13 +126,20 @@ public class Dashboard extends AppCompatActivity {
 
 
     }
+
     public void logOut(){
         SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
         // Set username & email
         sp.edit().putString("USERID",null).apply();
         sp.edit().putString("fullname",null).apply();
         sp.edit().putString("package",null).apply();
+        Login.logged = null;
+        Login.user_id = null;
+        Intent intent = new Intent(Dashboard.this,MainActivity.class);
+        startActivity(intent);
         finish();
+
+
     }
 
 

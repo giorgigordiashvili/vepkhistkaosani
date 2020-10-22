@@ -1,22 +1,30 @@
 package com.example.vefkhistkaosani
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_dashboard.*
 
 
 @Suppress("DEPRECATION")
 class VefxFragment : Fragment() {
 
+
     var mWebView: WebView? = null
 
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreateView(
 
             inflater: LayoutInflater,
@@ -28,8 +36,12 @@ class VefxFragment : Fragment() {
         val v: View = inflater.inflate(R.layout.fragment_vefx, container, false)
 
 
+
         val id = Login.logged;
         mWebView = v.findViewById<View>(R.id.view_main_vefx) as WebView
+
+
+
         mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?userid=$id")
 
         // Enable Javascript
@@ -37,8 +49,31 @@ class VefxFragment : Fragment() {
         webSettings.javaScriptEnabled = true
 
 
+        mWebView!!.webViewClient = object: WebViewClient(){
+            var sharedPref = activity!!.getPreferences(Context.MODE_PRIVATE)
+            val highScore = sharedPref.getString("SCROLLTO", null)
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+
+                super.onPageStarted(view, url, favicon)
+            }
+            override fun onPageFinished(view: WebView?, url: String?) {
+
+
+                if (highScore != null){
+                    mWebView!!.evaluateJavascript("scrollToThat('$highScore');", null);
+                    val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+                    with (sharedPref.edit()) {
+                        putString("SCROLLTO", null)
+                        apply()
+                    }
+                }
+                super.onPageFinished(view, url)
+            }
+
+        }
+
         // Force links and redirects to open in the WebView instead of in a browser
-        mWebView!!.webViewClient = WebViewClient()
+
         return v
 
     }
@@ -48,6 +83,7 @@ class VefxFragment : Fragment() {
     fun scrollToThat(id: String){
 
 
+
     }
 
     override fun onResume() {
@@ -55,7 +91,7 @@ class VefxFragment : Fragment() {
 
         // Set title bar
         (activity as Dashboard?)
-                ?.setActionBarTitle("        ვეფხისტყაოსანი")
+                ?.setActionBarTitle("ვეფხისტყაოსანი")
     }
 
     private fun callJavaScript(view: WebView, methodName: String, vararg params: Any) {
@@ -84,14 +120,15 @@ class VefxFragment : Fragment() {
         inflater.inflate(R.menu.search_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
-
+        val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-
+                navBar.visibility = View.GONE
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                navBar.visibility = View.VISIBLE
                 val id = Login.logged;
                 mWebView?.loadUrl("http://vefxistyaosani.ge/android/?userid=$id")
                 return true

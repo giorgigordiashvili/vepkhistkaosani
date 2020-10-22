@@ -8,7 +8,7 @@ import android.webkit.WebViewClient
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class AporizmebiFragment : Fragment() {
@@ -46,7 +46,7 @@ class AporizmebiFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.sort_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
-
+        val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
         val searchView = searchItem?.actionView as SearchView
 
 
@@ -55,12 +55,12 @@ class AporizmebiFragment : Fragment() {
 
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-
+                navBar.visibility = View.GONE
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-
+                navBar.visibility = View.VISIBLE
 
                 val url = mWebView?.url
                 val sanitizer = UrlQuerySanitizer(url)

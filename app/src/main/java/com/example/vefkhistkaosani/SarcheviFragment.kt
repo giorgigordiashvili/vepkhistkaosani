@@ -1,30 +1,46 @@
 package com.example.vefkhistkaosani
 
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import kotlinx.android.synthetic.main.fragment_sarchevi.*
-import kotlinx.android.synthetic.main.fragment_sarchevi.view.*
-import java.util.*
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class SarcheviFragment : Fragment() {
+    private var v: View? = null
+
 
     var mWebView: WebView? = null
+    private lateinit var navController: NavController
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
 
+    }
     private inner class JavascriptInterface
     {
         @android.webkit.JavascriptInterface
         fun showToast(text: String?)
         {
-            (activity as Dashboard?)
-                    ?.changeView(text)
+
+            activity?.runOnUiThread(Runnable { navController.navigate(R.id.nav_vefx) })
+
+
+
+
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+            with(sharedPref.edit()) {
+                putString("SCROLLTO", text)
+                apply()
+            }
 
         }
     }
@@ -34,21 +50,26 @@ class SarcheviFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        val v: View = inflater.inflate(R.layout.fragment_sarchevi, container, false)
 
-      mWebView = v.findViewById<View>(R.id.view_main_sarc) as WebView
-        val id = Login.logged;
-        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&userid=$id")
-        mWebView?.addJavascriptInterface(JavascriptInterface(), "javascript_bridge")
+            v = inflater.inflate(R.layout.fragment_sarchevi, container, false)
+            mWebView = v?.findViewById<View>(R.id.view_main_sarc) as WebView
+            val id = Login.logged;
+            mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&userid=$id")
+            mWebView?.addJavascriptInterface(JavascriptInterface(), "javascript_bridge")
 
-        // Enable Javascript
-        val webSettings = mWebView!!.settings
+            // Enable Javascript
+            val webSettings = mWebView!!.settings
 
 
-        webSettings.javaScriptEnabled = true
+            webSettings.javaScriptEnabled = true
 
-        // Force links and redirects to open in the WebView instead of in a browser
-        mWebView!!.webViewClient = WebViewClient()
+            // Force links and redirects to open in the WebView instead of in a browser
+            mWebView!!.webViewClient = WebViewClient()
+
+
+
+
+
         return v
     }
 
@@ -64,14 +85,15 @@ class SarcheviFragment : Fragment() {
         inflater.inflate(R.menu.search_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
-
+        val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-
+                navBar.visibility = View.GONE
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                navBar.visibility = View.VISIBLE
                 val id = Login.logged;
                 mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&userid=$id")
                 return true

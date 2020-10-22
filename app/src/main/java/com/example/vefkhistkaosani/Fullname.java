@@ -37,7 +37,7 @@ public class Fullname extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(Fullname.this);
                 //this is the url where you want to send the request
                 //TODO: replace with your own url to send request, as I am using my own localhost for this tutorial
-                String url = "https://vefxistyaosani.ge/android/config/fullnameEnter.php";
+                String url = "https://vefxistyaosani.ge/iOS/config/fullnameEnter.php";
 
                 // Request a string response from the provided URL.
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -45,8 +45,9 @@ public class Fullname extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 // Display the response string.
+                                System.out.println(response);
 
-                                Gson gson = new Gson();
+
                                 JsonObject jsonObject = new JsonParser().parse(response).getAsJsonObject();
 
                                 if(jsonObject.get("result").getAsString().equals("1")) {
