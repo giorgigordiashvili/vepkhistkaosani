@@ -26,28 +26,29 @@
         app:itemIconSize="24dp"
         app:itemIconTint="@color/vefx"
         app:itemTextColor="#FFFFFF"
-        app:menu="@menu/activity_main_drawer" >
+        app:menu="@menu/activity_main_drawer">
+
         <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-        <Button
-            android:id="@+id/open_settings"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha="0.8"
-            android:background="#000000"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <Button
+                android:id="@+id/open_settings"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
 
-            app:itemTextColor="#FFFFFF"
-            android:drawableLeft="@drawable/ic_config"
-            android:text="კონფიგურაცია"
-             />
-    </LinearLayout></com.google.android.material.navigation.NavigationView>
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_config"
+                android:text="კონფიგურაცია"
+                app:backgroundTint="@android:color/transparent"
+                app:itemTextColor="#FFFFFF" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
 
 
 

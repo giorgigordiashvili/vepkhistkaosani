@@ -20,7 +20,7 @@
             android:title="შინაარსი" />
         <item
             android:id="@+id/nav_lexikoni"
-            android:icon="@drawable/ic_lexikoni"
+            android:icon="@drawable/ic_lexi"
             android:title="ლექსიკონი" />
     </group>
 

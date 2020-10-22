@@ -3,6 +3,9 @@ package com.example.vefkhistkaosani;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.RequiresApi;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,6 +34,7 @@ public class Dashboard extends AppCompatActivity {
     TextView textViewEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
 
         //FINSH
@@ -89,6 +94,7 @@ public class Dashboard extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -110,11 +116,14 @@ public class Dashboard extends AppCompatActivity {
 
     }
 
+
     public void changeCheck(){
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_view);
-        bottomNav.getMenu().findItem(R.id.nav_vefx).setChecked(false);
-        bottomNav.getMenu().findItem(R.id.nav_sarc).setChecked(false);
-        bottomNav.getMenu().findItem(R.id.nav_apor).setChecked(false);
+
+            bottomNav.setItemIconTintList(ColorStateList.valueOf(Color.parseColor("#848484")));
+            bottomNav.setItemTextColor(ColorStateList.valueOf(Color.parseColor("#848484")));
+
+
     }
     public void changeView(String text){
 

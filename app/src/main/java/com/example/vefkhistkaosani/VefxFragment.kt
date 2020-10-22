@@ -50,6 +50,7 @@ class VefxFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        (activity as Dashboard?)?.changeCheck()
 
         setHasOptionsMenu(true)
         val v: View = inflater.inflate(R.layout.fragment_vefx, container, false)

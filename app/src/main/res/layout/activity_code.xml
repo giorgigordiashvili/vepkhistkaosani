@@ -7,6 +7,32 @@
     android:background="#000"
     android:padding="0dp">
 
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="KJ education"
+        android:textColor="#DABA83"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="89dp"
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="from"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="0dp"
@@ -23,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
+        android:fontFamily="@font/firago_regular"
         android:padding="0dp"
         android:text="თავიდან გაგზავნა"
         android:textColor="#999999"
@@ -37,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
+        android:fontFamily="@font/firago_regular"
         android:padding="0dp"
         android:text="ნომრის შეცვლა"
         android:textColor="#999999"
@@ -81,6 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp"
+        android:fontFamily="@font/firago_regular"
         android:text="შეიყვანეთ ერთჯერადი პაროლი"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"

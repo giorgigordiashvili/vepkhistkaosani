@@ -34,7 +34,7 @@ class EseebiFragment : Fragment() {
             startActivity(sendIntent)
         }
         @android.webkit.JavascriptInterface
-        fun copyText(text:String){
+        fun copyText(text: String){
 
 
             val clipboard: ClipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -47,6 +47,8 @@ class EseebiFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        (activity as Dashboard?)?.changeCheck()
+
         setHasOptionsMenu(true)
         //BACK PRESS HANDLING IN WEBVIEW
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {

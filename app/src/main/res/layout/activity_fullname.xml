@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     android:background="#000">
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="KJ education"
+        android:textColor="#DABA83"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="89dp"
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="from"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="0dp"
@@ -53,6 +79,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_rounded"
+        android:fontFamily="@font/firago_regular"
         android:hint="სახელი გვარი"
         android:inputType="textPersonName"
         android:paddingLeft="16dp"
@@ -70,6 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="77dp"
+        android:fontFamily="@font/firago_regular"
         android:gravity="center"
         android:text="ჩაწერეთ თქვენი სახელი"
         android:textColor="#FFFFFF"

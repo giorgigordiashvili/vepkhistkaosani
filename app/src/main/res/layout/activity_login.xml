@@ -52,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:fontFamily="@font/firago_regular"
         android:gravity="center"
         android:text="გამარჯობა! \n მიუთითეთ ტელეფონის ნომერი"
         android:textColor="#FFFFFF"
@@ -59,12 +60,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="KJ education"
+        android:textColor="#DABA83"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="89dp"
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="from"
+        android:textColor="#828282"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/phone_number"
         android:layout_width="267dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_rounded"
+        android:fontFamily="@font/firago_regular"
         android:hint="567 117 216"
         android:inputType="textPersonName"
         android:paddingLeft="16dp"
