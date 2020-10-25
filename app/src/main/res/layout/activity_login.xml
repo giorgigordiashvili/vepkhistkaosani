@@ -91,10 +91,11 @@
         android:layout_width="267dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
+
         android:background="@drawable/bg_rounded"
         android:fontFamily="@font/firago_regular"
         android:hint="567 117 216"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingLeft="16dp"
         android:textColor="#000000"
         android:textColorHint="#75000000"

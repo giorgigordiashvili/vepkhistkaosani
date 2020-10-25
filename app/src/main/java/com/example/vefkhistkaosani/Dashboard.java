@@ -5,17 +5,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -57,6 +61,7 @@ public class Dashboard extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_view);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -112,16 +117,16 @@ public class Dashboard extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
     public void setActionBarTitle(String title) {
+
+
+
         getSupportActionBar().setTitle(title);
 
     }
 
 
     public void changeCheck(){
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_view);
 
-            bottomNav.setItemIconTintList(ColorStateList.valueOf(Color.parseColor("#848484")));
-            bottomNav.setItemTextColor(ColorStateList.valueOf(Color.parseColor("#848484")));
 
 
     }

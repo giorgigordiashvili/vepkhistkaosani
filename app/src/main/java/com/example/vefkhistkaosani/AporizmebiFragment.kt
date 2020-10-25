@@ -22,20 +22,20 @@ class AporizmebiFragment : Fragment() {
     private inner class JavascriptInterface
     {
         @android.webkit.JavascriptInterface
+        fun copyText(text: String){
+
+
+            val clipboard: ClipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText(null, text)
+            clipboard.setPrimaryClip(clip)
+        }
+        @android.webkit.JavascriptInterface
         fun shareText(text: String){
             val sendIntent = Intent()
             sendIntent.action = Intent.ACTION_SEND
             sendIntent.putExtra(Intent.EXTRA_TEXT, text)
             sendIntent.type = "text/plain"
             startActivity(sendIntent)
-        }
-        @android.webkit.JavascriptInterface
-        fun copyText(text:String){
-
-
-            val clipboard: ClipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText(null, text)
-            clipboard.setPrimaryClip(clip)
         }
     }
     override fun onCreateView(
@@ -52,7 +52,7 @@ class AporizmebiFragment : Fragment() {
         // Enable Javascript
         val webSettings = mWebView!!.settings
         webSettings.javaScriptEnabled = true
-
+        mWebView?.addJavascriptInterface(JavascriptInterface(), "javascript_bridge")
         // Force links and redirects to open in the WebView instead of in a browser
         mWebView!!.webViewClient = WebViewClient()
         return v
@@ -70,6 +70,7 @@ class AporizmebiFragment : Fragment() {
         val searchItem = menu?.findItem(R.id.search)
         val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
         val searchView = searchItem?.actionView as SearchView
+
 
 
 

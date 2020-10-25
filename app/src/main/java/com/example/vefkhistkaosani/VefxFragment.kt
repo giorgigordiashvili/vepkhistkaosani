@@ -78,6 +78,7 @@ class VefxFragment : Fragment() {
 
                 super.onPageStarted(view, url, favicon)
             }
+            @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onPageFinished(view: WebView?, url: String?) {
 
 
@@ -122,7 +123,7 @@ class VefxFragment : Fragment() {
         inflater.inflate(R.menu.search_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
-        val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottom_nav_view)
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 navBar.visibility = View.GONE
@@ -149,7 +150,7 @@ class VefxFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     if (newText.length > 1) {
-                        val id = Login.logged;
+
                         mWebView?.loadUrl("http://vefxistyaosani.ge/android/?q=$newText?userid=$id")
                     }
                 };

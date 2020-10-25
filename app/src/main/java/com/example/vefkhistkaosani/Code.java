@@ -53,7 +53,7 @@ public class Code extends AppCompatActivity {
         Pinview editText = findViewById(R.id.pinview);
         editText.requestFocus();
         Button resendButton = (Button) findViewById(R.id.button_resend);
-        Button backButton = (Button)this.findViewById(R.id.button_back);
+        Button backButton = (Button) findViewById(R.id.button_back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +95,7 @@ public class Code extends AppCompatActivity {
         resendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(Code.this, "ახალი კოდი გამოგზავნილია", Toast.LENGTH_SHORT).show();
                 // Instantiate the RequestQueue.
                 RequestQueue queue = Volley.newRequestQueue(Code.this);
                 //this is the url where you want to send the request
@@ -153,11 +154,12 @@ public class Code extends AppCompatActivity {
                     sp.edit().putString("package","სტანდარტული").apply();
                     Login.logged = Login.user_id;
                     closeKeyboard();
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    finish();
+
                 } else {
                     Toast.makeText(Code.this, "კოდი არასწორია", Toast.LENGTH_SHORT).show();
-                    pinview.setValue(null);
+
                 }
 
             }
