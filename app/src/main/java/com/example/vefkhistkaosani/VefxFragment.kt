@@ -1,19 +1,26 @@
 package com.example.vefkhistkaosani
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -50,6 +57,22 @@ class VefxFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        val bottomNav: BottomNavigationView = activity!!.findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+
+       // bottomNav.itemIconTintList = ColorStateList.valueOf(Color.parseColor("#828282"))
+        //bottomNav.itemTextColor = ColorStateList.valueOf(Color.parseColor("#828282"))
+        val states = arrayOf( intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked))
+
+        val colors = intArrayOf(
+                Color.parseColor("#838383"),
+        Color.parseColor("#DAB983")
+
+        )
+        //bottomNav.itemTextAppearanceActive = R.style.navTextActive
+        bottomNav.itemIconTintList = ColorStateList(states, colors)
+        bottomNav.itemTextColor = ColorStateList(states,colors)
+
+
         (activity as Dashboard?)?.changeCheck()
 
         setHasOptionsMenu(true)
@@ -58,11 +81,21 @@ class VefxFragment : Fragment() {
 
 
         val id = Login.logged;
+        val url = "http://vefxistyaosani.ge/android/?userid=$id"
         mWebView = v.findViewById<View>(R.id.view_main_vefx) as WebView
+        if (!DetectConnection.checkInternetConnection(this.context)) {
+            (activity as Dashboard?)?.NoInternet()
+        } else {
+            mWebView!!.loadUrl(url)
+            }
 
 
 
-        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?userid=$id")
+
+
+
+
+
 
         // Enable Javascript
         val webSettings = mWebView!!.settings
@@ -114,15 +147,18 @@ class VefxFragment : Fragment() {
 
         // Set title bar
         (activity as Dashboard?)
-                ?.setActionBarTitle("ვეფხისტყაოსანი")
+                ?.setActionBarTitle("        ვეფხისტყაოსანი")
     }
 
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
+
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
+        searchView.setQueryHint("ძებნა")
+
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottom_nav_view)
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
@@ -151,7 +187,7 @@ class VefxFragment : Fragment() {
                 if (newText != null) {
                     if (newText.length > 1) {
 
-                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?q=$newText?userid=$id")
+                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?q=$newText&userid=$id")
                     }
                 };
                 return true

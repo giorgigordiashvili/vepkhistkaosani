@@ -8,5 +8,6 @@
     <color name="vefx">#DAB983</color>
     <color name="bg_ping">#434343</color>
     <color name="textColor">#838383</color>
+    <color name="drawer_icon">#828282</color>
 
 </resources>

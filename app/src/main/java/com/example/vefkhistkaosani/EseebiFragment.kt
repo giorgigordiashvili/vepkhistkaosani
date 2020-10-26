@@ -5,6 +5,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
@@ -14,9 +16,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
-
-
 
 
 class EseebiFragment : Fragment() {
@@ -47,8 +46,20 @@ class EseebiFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        (activity as Dashboard?)?.changeCheck()
+        val states = arrayOf(intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked))
 
+        val colors = intArrayOf(
+                Color.parseColor("#838383"),
+                Color.parseColor("#838383")
+
+        )
+
+        val bottomNav: BottomNavigationView = activity!!.findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        bottomNav.itemIconTintList = ColorStateList(states, colors)
+        bottomNav.itemTextColor = ColorStateList(states, colors)
+        (activity as Dashboard?)?.changeCheck()
+        //bottomNav.itemTextAppearanceActive = R.style.navTextActive
+        //bottomNav.itemTextColor = ColorStateList.valueOf(Color.parseColor("#828282"))
         setHasOptionsMenu(true)
         //BACK PRESS HANDLING IN WEBVIEW
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -64,7 +75,12 @@ class EseebiFragment : Fragment() {
         val v: View = inflater.inflate(R.layout.fragment_eseebi, container, false)
         mWebView = v.findViewById<View>(R.id.view_main_eseebi) as WebView
         val id = Login.logged;
-        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=eseebi&userid=$id")
+        if (!DetectConnection.checkInternetConnection(this.context)) {
+            (activity as Dashboard?)?.NoInternet()
+        } else {
+            mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=eseebi&userid=$id")
+        }
+
 
         // Enable Javascript
         val webSettings = mWebView!!.settings
@@ -75,10 +91,25 @@ class EseebiFragment : Fragment() {
         return v
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+
+        inflater.inflate(R.menu.eseebi_menu, menu)
         inflater.inflate(R.menu.search_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
+        val sortItem = menu?.findItem(R.id.upload_icon)
         val searchView = searchItem?.actionView as SearchView
+        searchView.setQueryHint("ძებნა")
         val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
+
+
+        sortItem.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                val bottomSheet = AddEseebiFragment()
+                bottomSheet.show(activity!!.supportFragmentManager, "TAG")
+
+                return true
+            }
+        })
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
 
@@ -118,11 +149,12 @@ class EseebiFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
 
     }
+
     override fun onResume() {
         super.onResume()
 
         // Set title bar
         (activity as Dashboard?)
-                ?.setActionBarTitle("ესეები")
+                ?.setActionBarTitle("                  ესეები")
     }
 }

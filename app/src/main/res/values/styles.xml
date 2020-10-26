@@ -11,11 +11,35 @@
 
     </style>
 
+
+    <style name="navTextActive">
+        <item name="android:textSize">15sp</item>
+       <item name="itemTextColor">@color/vefx</item>
+        <item name="itemIconTint">@color/vefx</item>
+    </style>
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">10sp</item>
+    </style>
+    <style name="NavigationDrawerStyle">
+
+        <item name="android:textSize">18sp</item><!-- text size in menu-->
+        <item name="fontFamily">@font/firago_medium</item>
+
+
+    </style>
+    <style name="DrawerTextStyle">
+
+        <item name="android:textSize">18sp</item><!-- text size in menu-->
+        <item name="fontFamily">@font/firago_medium</item>
+
+
     </style>
 
     <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">10sp</item>
+    </style>
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/firago_regular</item>
     </style>
 </resources>

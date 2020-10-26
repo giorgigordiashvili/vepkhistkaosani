@@ -5,6 +5,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
@@ -43,6 +45,17 @@ class ShinaarsiFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        val states = arrayOf( intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked))
+
+        val colors = intArrayOf(
+                Color.parseColor("#838383"),
+                Color.parseColor("#838383")
+
+        )
+
+        val bottomNav: BottomNavigationView = activity!!.findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        bottomNav.itemIconTintList = ColorStateList(states, colors)
+        bottomNav.itemTextColor = ColorStateList(states,colors)
         setHasOptionsMenu(true)
         //BACK PRESS HANDLING IN WEBVIEW
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -57,7 +70,12 @@ class ShinaarsiFragment : Fragment() {
         val v: View = inflater.inflate(R.layout.fragment_shinaarsi, container, false)
         mWebView = v.findViewById<View>(R.id.view_main_shinaarsi) as WebView
         val id = Login.logged;
-        mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=shinaarsi&userid=$id")
+        if (!DetectConnection.checkInternetConnection(this.context)) {
+            (activity as Dashboard?)?.NoInternet()
+        } else {
+            mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=shinaarsi&userid=$id")
+        }
+
 
         // Enable Javascript
         val webSettings = mWebView!!.settings
@@ -81,6 +99,7 @@ class ShinaarsiFragment : Fragment() {
         inflater.inflate(R.menu.search_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
         val searchView = searchItem?.actionView as SearchView
+        searchView.setQueryHint("ძებნა")
         val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {

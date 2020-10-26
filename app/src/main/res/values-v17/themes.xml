@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Vefkhistkaosani.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:fontFamily">@font/sf_pro_semibold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="drawerArrowStyle">@style/DrawerIconStyle</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+    </style>
+
+    <style name="Theme.Vefkhistkaosani.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/firago_bold</item>
+        <item name="android:textSize">18sp</item>
+
+    </style>
+
+    <style name="Theme.Vefkhistkaosani.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/firago_semibold</item>
+        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
+
+    </style>
+
+    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_sort2</item>
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+        <item name="android:contentDescription">"Lala"</item>
+
+
+
+    </style>
+    <style name="DrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/drawer_icon</item>
+
+    </style>
+    <style name="MySearchViewStyle">
+        <item name="closeIcon">@drawable/ic_remove</item>
+    </style>
+</resources>

@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
@@ -16,10 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,6 +32,9 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+
+
 
 public class Dashboard extends AppCompatActivity {
     Button settingsOpen;
@@ -36,14 +44,14 @@ public class Dashboard extends AppCompatActivity {
 
     TextView textViewUsername;
     TextView textViewEmail;
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
         //FINSH
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+
 
         // NavigationView
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -60,6 +68,7 @@ public class Dashboard extends AppCompatActivity {
         textViewEmail.setText(sp.getString("package", null));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
 
@@ -68,6 +77,7 @@ public class Dashboard extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         //BOTTOMSHEET
         settingsOpen = findViewById(R.id.open_settings);
+
         settingsOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +89,7 @@ public class Dashboard extends AppCompatActivity {
 
             }
         });
+
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -95,9 +106,7 @@ public class Dashboard extends AppCompatActivity {
 
     }
 
-    public void rame(){
 
-    }
 
 
     @Override
@@ -123,12 +132,25 @@ public class Dashboard extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
 
     }
-
+    public void NoInternet(){
+        Intent intent = null;
+        intent = new Intent(Dashboard.this, NoInternet.class);
+        startActivity(intent);
+    }
 
     public void changeCheck(){
 
 
 
+    }
+
+    public void doThis(MenuItem item){
+
+
+
+        AporizmebiFragment fragment = new AporizmebiFragment();
+
+        ((AporizmebiFragment) fragment).showSort();
     }
     public void changeView(String text){
 
@@ -140,6 +162,14 @@ public class Dashboard extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
+
+
 
     public void logOut(){
         SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);

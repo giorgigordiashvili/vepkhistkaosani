@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.CookieManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static int SPLASH_SCREEN = 1500;
@@ -44,11 +46,18 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent;
+                Intent intent = null;
 
                 if (Login.logged != null){
-                     intent = new Intent(MainActivity.this,Dashboard.class);
-                    finish();
+                    if (!DetectConnection.checkInternetConnection(getBaseContext())) {
+                       
+                        intent = new Intent(MainActivity.this, NoInternet.class);
+                        finish();
+                    } else {
+                        intent = new Intent(MainActivity.this, Dashboard.class);
+                        finish();
+                    }
+
                 }else {
                      intent = new Intent(MainActivity.this, Login.class);
                     finish();

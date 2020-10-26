@@ -2,10 +2,13 @@ package com.example.vefkhistkaosani
 
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
@@ -52,12 +55,29 @@ class SarcheviFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        val states = arrayOf(intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked))
+
+        val colors = intArrayOf(
+                Color.parseColor("#838383"),
+                Color.parseColor("#DAB983")
+
+        )
+
+        val bottomNav: BottomNavigationView = activity!!.findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        bottomNav.itemIconTintList = ColorStateList(states, colors)
+        bottomNav.itemTextColor = ColorStateList(states, colors)
+
         setHasOptionsMenu(true)
 
             v = inflater.inflate(R.layout.fragment_sarchevi, container, false)
             mWebView = v?.findViewById<View>(R.id.view_main_sarc) as WebView
             val id = Login.logged;
+        if (!DetectConnection.checkInternetConnection(this.context)) {
+            (activity as Dashboard?)?.NoInternet()
+        } else {
             mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=sarchevi&userid=$id")
+        }
+
 
 
             // Enable Javascript
@@ -82,15 +102,20 @@ class SarcheviFragment : Fragment() {
 
         // Set title bar
         (activity as Dashboard?)
-                ?.setActionBarTitle("სარჩევი")
+                ?.setActionBarTitle("                 სარჩევი")
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
-
         val searchView = searchItem?.actionView as SearchView
-        searchView.maxWidth = Int.MAX_VALUE //set search menu as full width
+
+
+        searchView.setQueryHint("ძებნა")
+
+        //BOTTOMSHEET
 
 
         val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
@@ -130,6 +155,7 @@ class SarcheviFragment : Fragment() {
             }
 
         })
+
 
         super.onCreateOptionsMenu(menu, inflater)
 
