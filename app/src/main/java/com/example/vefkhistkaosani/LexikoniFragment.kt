@@ -58,12 +58,13 @@ class LexikoniFragment : Fragment() {
         setHasOptionsMenu(true)
         val v: View = inflater.inflate(R.layout.fragment_lexikoni, container, false)
         mWebView = v.findViewById<View>(R.id.view_main_lexikoni) as WebView
+
+        val id = Login.logged;
         if (!DetectConnection.checkInternetConnection(this.context)) {
             (activity as Dashboard?)?.NoInternet()
         } else {
-            mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=lexikoni")
+            mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=lexikoni&userid=$id")
         }
-
 
         // Enable Javascript
         val webSettings = mWebView!!.settings
@@ -78,7 +79,7 @@ class LexikoniFragment : Fragment() {
 
         // Set title bar
         (activity as Dashboard?)
-                ?.setActionBarTitle("ლექსიკონი")
+                ?.setActionBarTitle("            ლექსიკონი")
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)

@@ -16,6 +16,7 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -184,12 +185,14 @@ class AporizmebiFragment : Fragment() {
         })
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                sortItem.setVisible(false)
                 navBar.visibility = View.GONE
 
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                ActivityCompat.invalidateOptionsMenu(activity);
                 navBar.visibility = View.VISIBLE
 
 

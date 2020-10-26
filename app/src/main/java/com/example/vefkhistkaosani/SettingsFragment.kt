@@ -4,6 +4,8 @@ package com.example.vefkhistkaosani
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -13,15 +15,17 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class SettingsFragment : BottomSheetDialogFragment() {
-
     private inner class JavascriptInterface
     {
+
+
         @android.webkit.JavascriptInterface
         fun loggg()
         {
@@ -65,10 +69,41 @@ class SettingsFragment : BottomSheetDialogFragment() {
         webSettings.javaScriptEnabled = true
 
         // Force links and redirects to open in the WebView instead of in a browser
-        mWebView!!.webViewClient = WebViewClient()
+        mWebView!!.webViewClient = object: WebViewClient(){
+
+
+            @RequiresApi(Build.VERSION_CODES.KITKAT)
+            override fun onPageFinished(view: WebView?, url: String?) {
+                view?.isFocusableInTouchMode = true
+                view?.requestFocus()
+                view?.setOnKeyListener { _, keyCode, event ->
+                    if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP ) {
+                        if(mWebView?.canGoBack()!!){
+                            mWebView!!.goBack()
+                        }else {
+                            dismiss()
+                        }
+
+
+
+                        true
+                    } else
+                        false
+                }
+
+
+                super.onPageFinished(view, url)
+            }
+
+        }
         return v
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+        super.onViewCreated(view, savedInstanceState)
+    }
 
     override fun onStart() {
         super.onStart()
@@ -80,18 +115,9 @@ class SettingsFragment : BottomSheetDialogFragment() {
 
 
 
-    override fun onCancel(dialog: DialogInterface) {
-        println("cancel")
 
 
 
-
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        println("dismiss")
-        super.onDismiss(dialog)
-    }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         isCancelable = false
         return BottomSheetDialog(requireContext(), theme).apply {

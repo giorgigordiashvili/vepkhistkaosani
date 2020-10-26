@@ -93,7 +93,7 @@ class ShinaarsiFragment : Fragment() {
 
         // Set title bar
         (activity as Dashboard?)
-                ?.setActionBarTitle("              შინაარსი")
+                ?.setActionBarTitle("                შინაარსი")
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)

@@ -13,6 +13,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -92,17 +93,18 @@ class EseebiFragment : Fragment() {
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
-
-        inflater.inflate(R.menu.eseebi_menu, menu)
         inflater.inflate(R.menu.search_menu, menu)
+        inflater.inflate(R.menu.eseebi_menu, menu)
+
+
         val searchItem = menu?.findItem(R.id.search)
-        val sortItem = menu?.findItem(R.id.upload_icon)
+        val uplaod_item = menu?.findItem(R.id.upload_icon)
         val searchView = searchItem?.actionView as SearchView
         searchView.setQueryHint("ძებნა")
         val navBar: BottomNavigationView = activity!!.findViewById(R.id.bottom_nav_view)
 
 
-        sortItem.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
+        uplaod_item.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem?): Boolean {
                 val bottomSheet = AddEseebiFragment()
                 bottomSheet.show(activity!!.supportFragmentManager, "TAG")
@@ -112,12 +114,13 @@ class EseebiFragment : Fragment() {
         })
         MenuItemCompat.setOnActionExpandListener(searchItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-
+                uplaod_item.setVisible(false)
                 navBar.visibility = View.GONE
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                invalidateOptionsMenu(activity);
                 navBar.visibility = View.VISIBLE
                 val id = Login.logged;
                 mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=eseebi&userid=$id")

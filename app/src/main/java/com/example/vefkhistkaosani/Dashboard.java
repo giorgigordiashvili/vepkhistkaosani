@@ -1,6 +1,7 @@
 package com.example.vefkhistkaosani;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -87,8 +88,12 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SettingsFragment bottomSheet = new SettingsFragment();
+                bottomSheet.show(getSupportFragmentManager(),"SettingsDialog");// to show it
+                
 
-                bottomSheet.show(getSupportFragmentManager(), "TAG");
+
+
+
 
 
 
