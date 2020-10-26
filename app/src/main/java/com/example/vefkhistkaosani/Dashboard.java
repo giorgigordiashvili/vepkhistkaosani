@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -44,6 +45,10 @@ public class Dashboard extends AppCompatActivity {
 
     TextView textViewUsername;
     TextView textViewEmail;
+
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SettingsFragment bottomSheet = new SettingsFragment();
+
                 bottomSheet.show(getSupportFragmentManager(), "TAG");
 
 
@@ -118,6 +124,9 @@ public class Dashboard extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

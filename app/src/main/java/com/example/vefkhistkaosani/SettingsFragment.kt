@@ -3,7 +3,9 @@ package com.example.vefkhistkaosani
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,15 +40,7 @@ class SettingsFragment : BottomSheetDialogFragment() {
     ): View? {
 
         //BACK PRESS HANDLING IN WEBVIEW
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (mWebView?.canGoBack()!!) {
-                    mWebView?.goBack();
-                } else {
-                    activity!!.finish()
-                }
-            }
-        })
+
         val v: View = inflater.inflate(R.layout.fragment_settings, container, false)
 
         val close_add = v!!.findViewById(R.id.close_settings) as Button
@@ -74,6 +68,8 @@ class SettingsFragment : BottomSheetDialogFragment() {
         mWebView!!.webViewClient = WebViewClient()
         return v
     }
+
+
     override fun onStart() {
         super.onStart()
         val sheetContainer = requireView().parent as? ViewGroup ?: return
@@ -82,8 +78,22 @@ class SettingsFragment : BottomSheetDialogFragment() {
         sheetContainer.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
+
+    override fun onCancel(dialog: DialogInterface) {
+        println("cancel")
+
+
+
+
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        println("dismiss")
+        super.onDismiss(dialog)
+    }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        isCancelable = false
         return BottomSheetDialog(requireContext(), theme).apply {
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
             behavior.isDraggable = false
@@ -94,13 +104,8 @@ class SettingsFragment : BottomSheetDialogFragment() {
     }
 
 
+
     override fun getTheme(): Int  = R.style.Theme_NoWiredStrapInNavigationBar
 
-    override fun onResume() {
-        super.onResume()
 
-        // Set title bar
-        (activity as Dashboard?)
-                ?.setActionBarTitle("კონფიგურაცია")
-    }
 }
