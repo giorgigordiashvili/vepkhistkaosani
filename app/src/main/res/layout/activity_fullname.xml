@@ -29,20 +29,18 @@
         app:srcCompat="@drawable/ic_from_kj_education" />
 
 
-
-
-
     <Button
         android:id="@+id/button_submit_fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:fontFamily="@font/firago_regular"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/firago_medium"
+        android:letterSpacing="-0.02"
         android:paddingLeft="60dp"
         android:paddingTop="3dp"
         android:paddingRight="64dp"
         android:paddingBottom="3dp"
-        android:text="შემდეგ"
+        android:text="@string/next"
         android:textColor="#000000"
         android:textSize="17sp"
         app:backgroundTint="#DABA83"
@@ -70,10 +68,11 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_rounded"
         android:fontFamily="@font/firago_regular"
-        android:hint="სახელი გვარი"
+        android:hint="შოთა რუსთაველი"
         android:inputType="textPersonName"
+
         android:paddingLeft="16dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textColorHint="#75000000"
         android:textCursorDrawable="@drawable/cursor_vefx"
         android:textSize="14sp"
@@ -87,10 +86,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="77dp"
-        android:fontFamily="@font/firago_regular"
+        android:fontFamily="@font/firago_medium"
         android:gravity="center"
         android:text="ჩაწერეთ თქვენი სახელი"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />

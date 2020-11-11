@@ -1,4 +1,4 @@
-package com.example.vefkhistkaosani;
+package ge.example.vefkhistkaosani;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -18,7 +18,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_bot">
+
+        android:background="@drawable/border_bot"
+        app:layout_constraintBottom_toTopOf="@+id/view_main_settings"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/close_settings"
@@ -27,9 +30,9 @@
             app:backgroundTint="@android:color/transparent"
             app:icon="@drawable/ic_close"
             app:iconTint="#828282"
-            app:layout_constraintBottom_toTopOf="@+id/view_main_settings"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/textView11" />
 
         <TextView
             android:id="@+id/textView11"

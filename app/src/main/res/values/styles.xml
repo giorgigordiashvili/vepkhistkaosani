@@ -12,6 +12,7 @@
     </style>
 
 
+
     <style name="navTextActive">
         <item name="android:textSize">15sp</item>
        <item name="itemTextColor">@color/vefx</item>

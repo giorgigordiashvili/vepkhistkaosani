@@ -1,10 +1,10 @@
-package com.example.vefkhistkaosani
+package ge.example.vefkhistkaosani
 
 
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
-import android.graphics.Bitmap
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
@@ -14,17 +14,29 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
-import androidx.activity.OnBackPressedCallback
+import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.example.vefkhistkaosani.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class SettingsFragment : BottomSheetDialogFragment() {
+    var PACKAGE_NAME: String? = null
+
     private inner class JavascriptInterface
     {
+        @android.webkit.JavascriptInterface
+        fun rateApp()
+        {
+            PACKAGE_NAME = context?.getPackageName()
 
+
+
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$PACKAGE_NAME")))
+
+        }
 
         @android.webkit.JavascriptInterface
         fun loggg()
@@ -35,6 +47,7 @@ class SettingsFragment : BottomSheetDialogFragment() {
         }
     }
     var mWebView: WebView? = null
+    var text: TextView? = null
 
 
     override fun onCreateView(
@@ -52,6 +65,7 @@ class SettingsFragment : BottomSheetDialogFragment() {
         close_add.setOnClickListener(View.OnClickListener {
             dismiss()
         })
+
         mWebView = v.findViewById<View>(R.id.view_main_settings) as WebView
         val sp = activity?.getSharedPreferences("login", Context.MODE_PRIVATE)
 
@@ -74,6 +88,11 @@ class SettingsFragment : BottomSheetDialogFragment() {
 
             @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onPageFinished(view: WebView?, url: String?) {
+                text = v.findViewById<View>(R.id.textView11) as TextView
+                text!!.setText(mWebView!!.title)
+
+
+                (view!!.getTitle());
                 view?.isFocusableInTouchMode = true
                 view?.requestFocus()
                 view?.setOnKeyListener { _, keyCode, event ->

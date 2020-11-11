@@ -89,7 +89,7 @@
         app:pinLength="6"
         app:pinWidth="43dp"
         app:splitWidth="14dp"
-        app:textSize="15sp" />
+        app:textSize="13sp" />
 
 
     <TextView
@@ -97,9 +97,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp"
-        android:fontFamily="@font/firago_regular"
+        android:fontFamily="@font/firago_medium"
         android:text="შეიყვანეთ ერთჯერადი პაროლი"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />

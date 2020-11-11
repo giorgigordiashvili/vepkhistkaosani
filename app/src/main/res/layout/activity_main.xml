@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#000000"
 
-    tools:context=".MainActivity">
+    tools:context="ge.example.vefkhistkaosani.MainActivity">
 
     <ImageView
         android:id="@+id/logo_splash"

@@ -1,14 +1,11 @@
-package com.example.vefkhistkaosani;
+package ge.example.vefkhistkaosani;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
+import com.example.vefkhistkaosani.R;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -80,6 +77,7 @@ public class Fullname extends AppCompatActivity {
         Button mButton = (Button) findViewById(R.id.button_submit_fullname);
         mButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                mButton.setEnabled(false);
                 Login.full_name = mFullname.getText().toString();
                 if( Login.full_name.length() < 3){
                     Toast.makeText(Fullname.this, "გთხოვთ შეიყვანოთ სრული სახელი", Toast.LENGTH_SHORT).show();
@@ -95,6 +93,7 @@ public class Fullname extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+                                    mButton.setEnabled(true);
                                     // Display the response string.
                                     System.out.println(response);
 

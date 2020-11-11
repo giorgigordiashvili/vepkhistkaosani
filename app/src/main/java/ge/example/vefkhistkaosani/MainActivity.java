@@ -1,11 +1,7 @@
-package com.example.vefkhistkaosani;
+package ge.example.vefkhistkaosani;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
 
-import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,10 +10,9 @@ import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.webkit.CookieManager;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.example.vefkhistkaosani.R;
 
 public class MainActivity extends AppCompatActivity {
     private static int SPLASH_SCREEN = 1500;

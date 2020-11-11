@@ -1,6 +1,7 @@
-package com.example.vefkhistkaosani
+package ge.example.vefkhistkaosani
 
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -16,6 +17,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
+import com.example.vefkhistkaosani.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -42,6 +44,7 @@ class EseebiFragment : Fragment() {
             clipboard.setPrimaryClip(clip)
         }
     }
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -91,6 +94,7 @@ class EseebiFragment : Fragment() {
         mWebView!!.webViewClient = WebViewClient()
         return v
     }
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
         inflater.inflate(R.menu.search_menu, menu)
@@ -158,6 +162,6 @@ class EseebiFragment : Fragment() {
 
         // Set title bar
         (activity as Dashboard?)
-                ?.setActionBarTitle("                  ესეები")
+                ?.setActionBarTitle("ესეები")
     }
 }

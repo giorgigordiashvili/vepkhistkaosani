@@ -1,6 +1,7 @@
-package com.example.vefkhistkaosani
+package ge.example.vefkhistkaosani
 
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -11,13 +12,13 @@ import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
+import com.example.vefkhistkaosani.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class SanishniFragment : Fragment() {
+class LexikoniFragment : Fragment() {
 
     var mWebView: WebView? = null
 
@@ -40,6 +41,7 @@ class SanishniFragment : Fragment() {
             clipboard.setPrimaryClip(clip)
         }
     }
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -57,25 +59,16 @@ class SanishniFragment : Fragment() {
         bottomNav.itemIconTintList = ColorStateList(states, colors)
         bottomNav.itemTextColor = ColorStateList(states,colors)
         setHasOptionsMenu(true)
-        //BACK PRESS HANDLING IN WEBVIEW
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (mWebView?.canGoBack()!!){
-                    mWebView?.goBack();
-                }else {
-                    activity!!.finish()
-                }
-            }
-        })
-        val v: View = inflater.inflate(R.layout.fragment_sanishni, container, false)
-        mWebView = v.findViewById<View>(R.id.view_main_sanishni) as WebView
-        val id = Login.logged;
+        val v: View = inflater.inflate(R.layout.fragment_lexikoni, container, false)
+        mWebView = v.findViewById<View>(R.id.view_main_lexikoni) as WebView
 
+        val id = Login.logged;
         if (!DetectConnection.checkInternetConnection(this.context)) {
             (activity as Dashboard?)?.NoInternet()
         } else {
-            mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=sanishni&userid=$id")
+            mWebView!!.loadUrl("http://vefxistyaosani.ge/android/?page=lexikoni&userid=$id")
         }
+
         // Enable Javascript
         val webSettings = mWebView!!.settings
         webSettings.javaScriptEnabled = true
@@ -89,9 +82,9 @@ class SanishniFragment : Fragment() {
 
         // Set title bar
         (activity as Dashboard?)
-                ?.setActionBarTitle("                 სანიშნი")
+                ?.setActionBarTitle("ლექსიკონი")
     }
-
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
@@ -108,7 +101,7 @@ class SanishniFragment : Fragment() {
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 navBar.visibility = View.VISIBLE
                 val id = Login.logged;
-                mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=sanishni&userid=$id")
+                mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=lexikoni&userid=$id")
                 return true
             }
         })
@@ -126,7 +119,7 @@ class SanishniFragment : Fragment() {
                 if (newText != null) {
                     if (newText.length > 0) {
                         val id = Login.logged;
-                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=sanishni&q=$newText&userid=$id")
+                        mWebView?.loadUrl("http://vefxistyaosani.ge/android/?page=lexikoni&q=$newText&userid=$id")
                     }
                 };
                 return true

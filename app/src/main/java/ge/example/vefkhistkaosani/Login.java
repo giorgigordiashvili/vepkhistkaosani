@@ -1,15 +1,15 @@
-package com.example.vefkhistkaosani;
+package ge.example.vefkhistkaosani;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.vefkhistkaosani.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -55,6 +56,7 @@ public class Login extends AppCompatActivity {
         editText.requestFocus();
 
         Button mButton = (Button) findViewById(R.id.button1);
+
         EditText mEdit = (EditText) findViewById(R.id.phone_number);
 //START
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +67,7 @@ public class Login extends AppCompatActivity {
                 if (s.length() != 9){
                     Toast.makeText(Login.this, "შეყვანილი ნომერი არასწორია", Toast.LENGTH_SHORT).show();
                 } else {
+                    mButton.setEnabled(false);
                     // Instantiate the RequestQueue.
                     RequestQueue queue = Volley.newRequestQueue(Login.this);
                     //this is the url where you want to send the request
@@ -76,6 +79,7 @@ public class Login extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+                                    mButton.setEnabled(true);
                                     // Display the response string.
                                     System.out.println(response);
                                     Gson gson = new Gson();

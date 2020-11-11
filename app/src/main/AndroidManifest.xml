@@ -15,15 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vefkhistkaosani"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NoInternet"></activity>
+        <activity android:name="ge.example.vefkhistkaosani.NoInternet"></activity>
         <activity
-            android:name=".Dashboard"
+            android:name="ge.example.vefkhistkaosani.Dashboard"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/Theme.Vefkhistkaosani.NoActionBar" />
-        <activity android:name=".Fullname" />
-        <activity android:name=".Code" />
-        <activity android:name=".Login" />
-        <activity android:name=".MainActivity">
+        <activity android:name="ge.example.vefkhistkaosani.Fullname" />
+        <activity android:name="ge.example.vefkhistkaosani.Code" />
+        <activity android:name="ge.example.vefkhistkaosani.Login" />
+        <activity android:name="ge.example.vefkhistkaosani.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

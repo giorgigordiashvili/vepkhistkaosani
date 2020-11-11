@@ -1,4 +1,4 @@
-package com.example.vefkhistkaosani;
+package ge.example.vefkhistkaosani;
 
 import org.junit.Test;
 

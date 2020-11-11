@@ -1,5 +1,6 @@
-package com.example.vefkhistkaosani
+package ge.example.vefkhistkaosani
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -19,6 +20,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
+import com.example.vefkhistkaosani.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_aporizmebi.*
 
@@ -48,6 +50,7 @@ class AporizmebiFragment : Fragment() {
         }
     }
 
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -160,7 +163,7 @@ class AporizmebiFragment : Fragment() {
 
 
         (activity as Dashboard?)
-                ?.setActionBarTitle("            აფორიზმები")
+                ?.setActionBarTitle("აფორიზმები")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -236,6 +239,7 @@ class AporizmebiFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
 
     }
+    @SuppressLint("UseRequireInsteadOfGet")
     fun showSort(){
 
         val button = view!!.findViewById<View>(R.id.sort_dialog) as View
